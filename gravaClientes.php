@@ -5,13 +5,18 @@ require 'lib/funcs.php';
 
 //função trim limpa os espaços excessivos...
 $cnpj = formataCNPJ($_POST['cnpj']);
-$nome = trim($_POST['nome']);
-$qtd = trim($_POST['qtd']);
+$razao_social = trim($_POST['razao_social']);
+$nome_fantasia = trim($_POST['nome_fantasia']);
+$telefone = trim($_POST['telefone']);
+$email = trim($_POST['email']);
+$qnt_pdv = trim($_POST['qnt_pdv']);
 
+
+//falta validar os campos nome fantasia, telefone e email
 $erro = 0;
 if(strlen($cnpj) < 14 || !is_numeric($cnpj)) $erro++;
-if(strlen($nome) < 3) $erro++;
-if(strlen($qtd) == 0 || !is_numeric($qtd)) $erro++;
+if(strlen($razao_social) < 3) $erro++;
+if(strlen($qnt_pdv) == 0 || !is_numeric($qnt_pdv)) $erro++;
 
 if ($erro > 0) {
     header('Location: index.php?pagina=clientes&erro=1');
@@ -20,9 +25,9 @@ if ($erro > 0) {
 
 $con = conecta();
 
-$insert = "INSERT INTO tb_clientes"
-        . "(cnpj, nome, qtd)"
-        . "VALUES ('$cnpj','$nome','$qtd')";
+$insert = "INSERT INTO tb_cliente"
+        . "(cnpj, razao_social, nome_fantasia, telefone, email, qnt_pdv)"
+        . "VALUES ('$cnpj','$razao_social','$nome_fantasia', '$telefone', '$email', '$qnt_pdv')";
 
 $res = mysqli_query($con, $insert);
 

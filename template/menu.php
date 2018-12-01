@@ -14,7 +14,6 @@
             <ul class="nav navbar-nav">
                 <li <?php echo active($get); ?>><a href="index.php">Home</a></li>
                 <li <?php echo active($get, 'clientes'); ?>><a href="?pagina=clientes">Clientes</a></li>
-                <li <?php echo active($get, 'tiposLicenca'); ?>><a href="?pagina=tiposLicenca">Tipos de Licenca</a></li>
                 <li <?php echo active($get, 'licencas'); ?>><a href="?pagina=licencas">Licencas</a></li>
                 <li <?php echo active($get, 'relatorio'); ?>><a href="?pagina=relatorio">Relatório</a></li>
             </ul>

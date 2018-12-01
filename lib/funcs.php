@@ -5,9 +5,6 @@ function rotas($pagina) {
         case 'clientes':
             require 'paginas/clientes.php';
             break;
-        case 'tiposLicenca':
-            require 'paginas/tiposLicenca.php';
-            break;
         case 'licencas':
             require 'paginas/licencas.php';
             break;
