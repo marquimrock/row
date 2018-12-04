@@ -1,3 +1,9 @@
+<?php
+$con = conecta();
+
+$res = mysqli_query($con, 'SELECT * FROM tb_tipo_licenca');
+?>
+
 <div class="page-header">
     <h3></h3>
 </div>
@@ -18,11 +24,11 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="cnpj">Tipo Licenca</label>
                         <div class="col-md-8">
-                            <!-- <input id="tipo_licenca" name="tipo_licenca" type="text" placeholder="tipo_licenca" class="form-control" required> -->
                             <select class="form-control">
-                                <option>teste1</option>
-                                <option>teste2</option>
-                                <option>teste3</option>
+                                <option id="0">Selecione...</option>
+                                <?php while ($tipoLic = mysqli_fetch_assoc($res)): ?>
+                                    <option><?php echo $tipoLic['sistema'] . " - " . $tipoLic['descricao']; ?></option>
+                                <?php endwhile; ?>
                             </select>
                         </div>
                     </div>
@@ -33,7 +39,7 @@
                             <input id="serie" name="serie" type="number" placeholder="Série" class="form-control" required>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="senha">Senha</label>
                         <div class="col-md-8">
@@ -47,7 +53,7 @@
                             <input id="dt_venc" name="dt_venc" type="date" placeholder="Data de vencimento" class="form-control" required>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <div class="col-md-11 text-right">
                             <button type="submit" class="btn btn-primary btn-lg">Gravar</button>
