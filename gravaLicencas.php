@@ -10,20 +10,10 @@ $serie = trim($_POST['serie']);
 $senha = trim($_POST['senha']);
 $vencimento = trim($_POST['dt_venc']);
 
-
-//falta fazer a validacao dos campos
-/*
-$erro = 0;
-if(strlen($cnpj) < 14 || !is_numeric($cnpj)) $erro++;
-if(strlen($razao_social) < 3) $erro++;
-if(strlen($qnt_pdv) == 0 || !is_numeric($qnt_pdv)) $erro++;
-
-if ($erro > 0) {
-    header('Location: index.php?pagina=clientes&erro=1');
-    exit;
-}
+/*PENDENCIAS....
+ * Validação de todos os campos
+ * Direcionar corretamente no INSERT, os seguintes campos: id_cliente, id_tipo_licenca e data_inclusao.
 */
-
 $con = conecta();
 
 $insert = "INSERT INTO tb_licenca"

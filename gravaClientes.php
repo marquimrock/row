@@ -11,8 +11,9 @@ $telefone = trim($_POST['telefone']);
 $email = trim($_POST['email']);
 $qnt_pdv = trim($_POST['qnt_pdv']);
 
-
-//falta validar os campos nome fantasia, telefone e email
+/*PENDENCIAS....
+ * validacao dos campos nome fantasia, telefone e email
+ */
 $erro = 0;
 if(strlen($cnpj) < 14 || !is_numeric($cnpj)) $erro++;
 if(strlen($razao_social) < 3) $erro++;
