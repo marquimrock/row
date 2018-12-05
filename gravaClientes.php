@@ -11,13 +11,16 @@ $telefone = trim($_POST['telefone']);
 $email = trim($_POST['email']);
 $qnt_pdv = trim($_POST['qnt_pdv']);
 
-/*PENDENCIAS....
+/* PENDENCIAS....
  * validacao dos campos nome fantasia, telefone e email
  */
 $erro = 0;
-if(strlen($cnpj) < 14 || !is_numeric($cnpj)) $erro++;
-if(strlen($razao_social) < 3) $erro++;
-if(strlen($qnt_pdv) == 0 || !is_numeric($qnt_pdv)) $erro++;
+if (strlen($cnpj) < 14 || !is_numeric($cnpj))
+    $erro++;
+if (strlen($razao_social) < 3)
+    $erro++;
+if (strlen($qnt_pdv) == 0 || !is_numeric($qnt_pdv))
+    $erro++;
 
 if ($erro > 0) {
     header('Location: index.php?pagina=clientes&erro=1');
@@ -32,6 +35,6 @@ $insert = "INSERT INTO tb_cliente"
 
 $res = mysqli_query($con, $insert);
 
-if ($res){
+if ($res) {
     header('Location: index.php?pagina=clientes&sucesso=1');
 }

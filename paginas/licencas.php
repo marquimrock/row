@@ -3,7 +3,6 @@ $con = conecta();
 
 $res = mysqli_query($con, 'SELECT * FROM tb_tipo_licenca');
 ?>
-
 <div class="page-header">
     <h3></h3>
 </div>
@@ -24,10 +23,10 @@ $res = mysqli_query($con, 'SELECT * FROM tb_tipo_licenca');
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="cnpj">Tipo Licenca</label>
                         <div class="col-md-8">
-                            <select class="form-control">
+                            <select class="form-control" name="cmbItens">
                                 <option id="0">Selecione...</option>
                                 <?php while ($tipoLic = mysqli_fetch_assoc($res)): ?>
-                                    <option><?php echo $tipoLic['sistema'] . " - " . $tipoLic['descricao']; ?></option>
+                                    <option ><?php echo $tipoLic['id'] . " - " . $tipoLic['sistema'] . " - " . $tipoLic['descricao']; ?></option>
                                 <?php endwhile; ?>
                             </select>
                         </div>
@@ -36,7 +35,7 @@ $res = mysqli_query($con, 'SELECT * FROM tb_tipo_licenca');
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="serie">Série</label>
                         <div class="col-md-8">
-                            <input id="serie" name="serie" type="number" placeholder="Série" class="form-control" required>
+                            <input id="serie" name="serie" min='0' type="number" placeholder="Série" class="form-control" required>
                         </div>
                     </div>
 
@@ -65,7 +64,7 @@ $res = mysqli_query($con, 'SELECT * FROM tb_tipo_licenca');
                         ?>
                         <div class="alert alert-success" role="alert">
                             <strong>Sucesso!</strong>
-                            Orçamento gravado com sucesso.
+                            Licença gravada com sucesso.
                         </div>
                     <?php endif; ?>
                     <?php
