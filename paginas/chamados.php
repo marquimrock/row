@@ -2,6 +2,7 @@
 require 'login/verifica_login.php';
 require 'model/clientes_bo.php';
 require 'model/chamados_bo.php';
+require 'model/usuarios_bo.php';
 $usuario = $_SESSION['usuario'];
 $edicao = false;
 $id='';

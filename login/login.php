@@ -6,12 +6,12 @@ if(empty($_POST['usuario']) || empty($_POST['senha'])) {
 	header('Location: index.php');
 	exit();
 }
-
+$id = mysqli_real_escape_string($conexao, $_POST['id']);
 $usuario = mysqli_real_escape_string($conexao, $_POST['usuario']);
 $senha = mysqli_real_escape_string($conexao, $_POST['senha']);
 $senha = base64_encode($senha);
 
-$query = "select usuario from tb_usuario where usuario = '{$usuario}' and senha = '{$senha}'";
+$query = "select id, usuario from tb_usuario where usuario = '{$usuario}' and senha = '{$senha}'";
 $query2 = "select adm from tb_usuario where usuario = '{$usuario}' and senha = '{$senha}'";
 
 $result = mysqli_query($conexao, $query);
@@ -24,6 +24,7 @@ while ($linha = mysqli_fetch_assoc($result2)){
 $row = mysqli_num_rows($result);
 
 if($row == 1) {
+	$_SESSION['id'] = $id;
 	$_SESSION['usuario'] = $usuario;
 	$_SESSION['acesso'] = $acesso;
 	header('Location: ../index.php');
