@@ -1,13 +1,14 @@
-<div class="navbar navbar-default navbar-fixed-bottom">
+<br><br><br>
+<div class="navbar navbar-default navbar-fixed-bottom text-center">
     <div class="container">
-        <p class="navbar-text pull-left">© <?= date("Y"); ?>
+        <p class="navbar-text" style="padding-left: 39%;">© <?= date("Y"); ?>
             <!-- "_blank": abre a pagina em outra aba; -->
             <!--
                 "noopener": impede que uma nova pagina acesse seu objeto de janela via window.opener
                 Exemplo: window.opener.location = ‘https: //PAGINA_FALSA.com/facebook/index-falsa.html’. 
             -->
             <a href="http://hostautomacao.com.br/" target="_blank" rel="noopener">Host Automação Comercial</a>
-        </p>
+        </p>        
     </div>
 </div>
 

@@ -1,0 +1,14 @@
+-------------------------------------------------------------------------------
+------------------- IMPLEMENTAÇÃO FUTURA --------------------------------------
+-------------------------------------------------------------------------------
+-- Atribuir cores em níveis de prioridade para exibição de alerta para as licenças que estão prestes a vencer;
+-- Quando cadastrar a data de vencimento de uma licença, programa-la para exibir alerta com antecedencia de 15 dias ou mais;
+Exemplo:
+
+$data_vencimento = new DateTime();
+$data_vencimento->modify("-15 day"); // antecipa o vencimento da licença em 15 dias.
+echo $data->format("d/m/Y"); // exibe a data final antecipada
+
+-------------------------------------------------------------------------------
+-- cadastro de clientes, manter a combobox 'cidades' desabilitada até a seleção de um estado
+-- preencher a combobox cidade automaticamente conforme seleção do estado

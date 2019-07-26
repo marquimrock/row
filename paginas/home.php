@@ -1,8 +1,11 @@
+<?php
+require 'login/verifica_login.php';
+?>
 <div class="page-header">
-    <h3>Gerenciador de licenças</h3>
+    
 </div>
 
 <p>
-    Conteúdo... Conteúdo... Conteúdo... Conteúdo... Conteúdo... 
+    <h3 align="center">Gerenciador de licenças</h3>
 </p>
 
