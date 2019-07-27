@@ -23,42 +23,15 @@ if (!empty($_GET['id'])) {
     }
 
 }   
-    /*
-    while ($chamado= mysqli_fetch_assoc($result)):
-        $id = $chamado['id'];
-    endwhile;
-}
- 
-    $cnpj = $_GET['cnpj'];
-    $cnpj = tiraEspecias($cnpj);
-    $result = buscaClientesPorCNPJ($cnpj);
-    while ($cliente = mysqli_fetch_assoc($result)):
-        $id = $cliente['id'];
-        $razao_social = $cliente['razao_social'];
-        $inscricao_estadual = $cliente['inscricao_estadual'];
-        $nome_fantasia = $cliente['nome_fantasia'];
-        $cep = tiraEspecias($cliente['cep']);
-        $logradouro = $cliente['logradouro'];
-        $numero = $cliente['numero'];
-        $bairro = $cliente['bairro'];
-        $id_cidade = $cliente['id_cidade'];
-        $id_uf = $cliente['id_uf'];
-        $telefone = tiraEspecias($cliente['telefone']);
-        $celular1 = tiraEspecias($cliente['celular1']);
-        $celular2 = tiraEspecias($cliente['celular2']);
-        $email = $cliente['email'];
-        $qnt_pdv = $cliente['qnt_pdv'];
-    endwhile;
-     
-}
-*/
+    
+    
 
 // -------------------------------------------------------------------
 // MANTEM OS CAMPOS PREENCHIDOS DURANTE O RETORNO DE ERRO DE VALIDAÇÕES
 // -------------------------------------------------------------------
 $cnpj = isset($_GET['cnpj']) ? $_GET['cnpj'] : '';
 $razao_social = isset($_GET['razao_social']) ? $_GET['razao_social'] : '';
-$inscricao_estadual = isset($_GET['inscricao_estadual']) ? $_GET['inscricao_estadual'] : '';
+$solicitante = isset($_GET['solicitante']) ? $_GET['solicitante'] : '';
 $nome_fantasia = isset($_GET['nome_fantasia']) ? $_GET['nome_fantasia'] : '';
 $cep = isset($_GET['cep']) ? tiraEspecias($_GET['cep']) : '';
 $logradouro = isset($_GET['logradouro']) ? $_GET['logradouro'] : '';
@@ -142,35 +115,28 @@ $qnt_pdv = isset($_GET['qnt_pdv']) ? $_GET['qnt_pdv'] : '';
                             <button type="button"onClick="history.go(-1)"class="btn btn-primary btn-info">Voltar</button>
                         </div>
                     </div>
-
-                    <?php
+                </fieldset>
+                 <?php
                     // -------------------------------------------------------------------
                     // MENSAGENS DE SUCESSO
                     // -------------------------------------------------------------------
                     if (isset($_GET['sucesso']) ? $_GET['sucesso'] : ''):
                         ?>
                         <div class="alert alert-success" role="alert">                            
-                            Cliente gravado com <strong>Sucesso!</strong>.
+                            Chamado gravado com <strong>Sucesso!</strong>.
                         </div>
                     <?php endif; ?>
                     <?php
                     // -------------------------------------------------------------------
                     // MENSAGENS DE ERRO
                     // -------------------------------------------------------------------
-                    $msgNumPdv = 'O número de PDVs não pode ser igual a <b>zero</b>!';
-                    $msgCliente = 'Já existe um cliente cadastrado com esse cnpj!';
-
                     if (isset($_GET['erro']) ? $_GET['erro'] : ''):
                         ?>
                         <div class="alert alert-danger" role="alert">
                             <strong>Atenção!</strong>                               
-                            <?php echo (!isset($_GET['cliente'])) ? 'Preencha todo o formulário' : ''; ?> 
-                            <?php echo (isset($_GET['qnt_pdv']) && $_GET['qnt_pdv'] == 0 && strlen($_GET['qnt_pdv']) > 0) ? $msgNumPdv : ''; ?> 
-                            <?php echo (isset($_GET['cliente']) && $_GET['cliente'] == 'encontrado') ? $msgCliente : ''; ?> 
+                            <?php echo (!empty($_GET['solicitante'])) ?  '' :  'preencha o formulario'; ?>
                         </div>
                     <?php endif; ?>
-
-                </fieldset>
             </form>
         </div>
     </div>

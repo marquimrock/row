@@ -14,13 +14,13 @@ function buscaChamadosPorId($id) {
     return mysqli_query($con, $query);
 }
 
-function gravaChamado($solicitante, $ocorrencia) {
+function gravaChamado($id_usuario, $solicitante, $ocorrencia) {
     $data = date('Y-m-d');
     $hora = date('h:i');
     $con  = conecta();
     $insert = "INSERT INTO tb_chamado"
-            . "(data, hora, solicitante, ocorrencia)"
-            . "VALUES ('$data','$hora','$solicitante', '$ocorrencia')";
+            . "(data, hora, id_usuario, solicitante, ocorrencia)"
+            . "VALUES ('$data','$hora', $id_usuario, '$solicitante', '$ocorrencia')";
         echo $insert;    
         return  mysqli_query($con, $insert);
 }
