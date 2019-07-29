@@ -14,15 +14,15 @@ function buscaChamadosPorId($id) {
     return mysqli_query($con, $query);
 }
 
-function gravaChamado($id_usuario, $solicitante, $ocorrencia) {
+function gravaChamado($id_usuario, $solicitante, $ocorrencia, $status) {
     $data = date('Y-m-d');
     $hora = date('h:i');
     $con  = conecta();
     $insert = "INSERT INTO tb_chamado"
             . "(data, hora, id_usuario, solicitante, ocorrencia)"
-            . "VALUES ('$data','$hora', $id_usuario, '$solicitante', '$ocorrencia')";
+            . "VALUES ('$data','$hora', $id_usuario, '$solicitante', '$ocorrencia', '$status')";
         echo $insert;    
-        return  mysqli_query($con, $insert);
+        //return  mysqli_query($con, $insert);
 }
 
 function limiteChamPorPagina($inicio_pag, $chamados_por_pagina) {
@@ -31,7 +31,6 @@ function limiteChamPorPagina($inicio_pag, $chamados_por_pagina) {
     return mysqli_query($con, $query);
 }
 
-/*
 
 //busca os tipos de sistema para preencher a combobox
 function buscaTiposSistema() {
@@ -102,4 +101,3 @@ function buscarSenha($senha) {
         return 0;
     }
 }
-*/

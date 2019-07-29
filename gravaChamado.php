@@ -13,7 +13,9 @@ require 'lib/funcs.php';
 // -------------------------------------------------------------------
 $id_cliente = $_POST['cb_cliente'];
 $solicitante = $_POST['solicitante'];
-$ocorrencia = $_POST['ocorrencia'];
+$ocorrencia = $_POST['ocorrenc
+
+/*
 
 
 // -------------------------------------------------------------------
@@ -50,7 +52,7 @@ if ($total === 0) {
      header('Location: index.php?pagina=chamados&chamado=encontrado&erro=1&solicitante=' . $solicitante);
     
 } else {
-	$res = gravaChamado($id_usuario, $solicitante, $ocorrencia, $id_usuario);
+	$res = gravaChamado($id_usuario, $solicitante, $ocorrencia, $id_usuario, $status);
     header('Location: index.php?pagina=chamados&sucesso=1');
 }
 

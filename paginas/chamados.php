@@ -6,6 +6,7 @@ require 'model/usuarios_bo.php';
 $usuario = $_SESSION['usuario'];
 $edicao = false;
 $id='';
+$status = $_SESSION['status'];
 
 
 // -------------------------------------------------------------------
@@ -70,8 +71,13 @@ $qnt_pdv = isset($_GET['qnt_pdv']) ? $_GET['qnt_pdv'] : '';
                         <div class="col-md-3" style="width: 140px;">
                             <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;">Usuario:</label>
                               <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;"><?php echo $usuario;?></label>
-                        </div>                        
-                    </div>  
+                        </div>
+                        <div class="col-md-3" style="width: 140px;">
+                            <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;">Status:</label> 
+                            <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;" value="status" name="status" id="status"><?php echo empty($id) ? $status = 'Novo' : $status ='Edição';?></label>
+                        </div>  
+                          
+                    </div>
                         
                     <!-- PROXIMA LINHA -->
                     <div class="form-group" style="padding-left: 50px;"> 
