@@ -56,10 +56,11 @@ if ($total === 0) {
 } else {	
 	$res = gravaChamado($id_usuario,$id_cliente, $solicitante, $ocorrencia, $id_usuario, $status, null);
 	
-	 if($res !== null){	 	
+      if($res === true){	 	
 	 	header('Location: index.php?pagina=chamados&sucesso=1'); 	
-	 }
-	 
+	 } else {
+        header('Location: index.php?pagina=chamados&chamado=encontrado&erro=1');
+     }
 	
 }
 
