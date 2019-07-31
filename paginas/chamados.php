@@ -6,7 +6,8 @@ require 'model/usuarios_bo.php';
 $usuario = $_SESSION['usuario'];
 $edicao = false;
 $id='';
-$status = $_SESSION['status'];
+$status = '';
+$_SESSION['status'] = $status;
 
 
 // -------------------------------------------------------------------
@@ -74,7 +75,7 @@ $qnt_pdv = isset($_GET['qnt_pdv']) ? $_GET['qnt_pdv'] : '';
                         </div>
                         <div class="col-md-3" style="width: 140px;">
                             <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;">Status:</label> 
-                            <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;" value="status" name="status" id="status"><?php echo empty($id) ? $status = 'Novo' : $status ='Edição';?></label>
+                            <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;" value="status" name="status" id="status"><?php echo empty($id) ? $status =  'Novo' : $Status ='Edição';?></label>
                         </div>  
                           
                     </div>
@@ -100,7 +101,7 @@ $qnt_pdv = isset($_GET['qnt_pdv']) ? $_GET['qnt_pdv'] : '';
                                        onkeyup="maiuscula(this)" onkeydown="autoTab(this, event);" style="width: 190px;">
                             </div> 
                             <div class="col-md-8">   
-                                <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;">Ocorrencia:</label>
+                                <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;">Ocorrência:</label>
                                 <input id="ocorrencia" name="ocorrencia" type="text" class="form-control" required 
                                         value="<?php echo!empty($ocorrencia) ? $ocorrencia : ''; ?>"
                                         <?php echo empty($edicao) ? 'false': 'readonly' ?>
@@ -141,6 +142,7 @@ $qnt_pdv = isset($_GET['qnt_pdv']) ? $_GET['qnt_pdv'] : '';
                         <div class="alert alert-danger" role="alert">
                             <strong>Atenção!</strong>                               
                             <?php echo (!empty($_GET['solicitante'])) ?  '' :  'preencha o formulario'; ?>
+                            <?php echo (!empty($_GET['ocorrencia'])) ?  '' :  'preencha o formulario'; ?>
                         </div>
                     <?php endif; ?>
             </form>

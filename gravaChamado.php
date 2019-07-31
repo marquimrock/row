@@ -13,16 +13,16 @@ require 'lib/funcs.php';
 // -------------------------------------------------------------------
 $id_cliente = $_POST['cb_cliente'];
 $solicitante = $_POST['solicitante'];
-$ocorrencia = $_POST['ocorrenc
-
-/*
-
+$ocorrencia = $_POST['ocorrencia'];
+$status = $_SESSION['status'];
 
 // -------------------------------------------------------------------
 // VALIDAÇÕES
 // -------------------------------------------------------------------
 $erro = 0;
 if (strlen($solicitante) < 3)
+    $erro++;
+if (strlen($ocorrencia) < 3)
     $erro++;
 
 // -------------------------------------------------------------------
@@ -31,6 +31,9 @@ if (strlen($solicitante) < 3)
 if ($erro > 0) {
     header('Location: index.php?pagina=chamados&erro=1'
     	. '&solicitante=' . $solicitante);
+    exit;
+     header('Location: index.php?pagina=chamados&erro=1'
+    	. '&ocorrencia=' . $ocorrencia);
     exit;
 }
 
@@ -47,12 +50,16 @@ if ($erro > 0) {
             }
 
 $total = mysqli_num_rows($result);
-print_r($total);
 if ($total === 0) {
      header('Location: index.php?pagina=chamados&chamado=encontrado&erro=1&solicitante=' . $solicitante);
     
-} else {
-	$res = gravaChamado($id_usuario, $solicitante, $ocorrencia, $id_usuario, $status);
-    header('Location: index.php?pagina=chamados&sucesso=1');
+} else {	
+	$res = gravaChamado($id_usuario,$id_cliente, $solicitante, $ocorrencia, $id_usuario, $status, null);
+	
+	 if($res !== null){	 	
+	 	header('Location: index.php?pagina=chamados&sucesso=1'); 	
+	 }
+	 
+	
 }
 
