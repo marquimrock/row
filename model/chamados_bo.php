@@ -1,7 +1,6 @@
 <?php
 
-$var = $_SESSION['status'];
-echo $var;
+//$var = $_SESSION['status'];
 
 //busca os codigos de licença para preencher a combobox
 function buscaTodosChamados() {
@@ -17,7 +16,15 @@ function buscaChamadosPorId($id) {
     return mysqli_query($con, $query);
 }
 
+
 function gravaChamado($id_usuario, $id_cliente, $solicitante, $ocorrencia, $var,$tecnico_fechamento) {
+    
+    if(isset($tecnico_fechamento)){
+        echo "null" ;
+    } else {
+        echo "preenchido" .$tecnico_fechamento;
+    }
+    
     $data_abertura = date('Y-m-d');
     $hora_abertura = date('h:i');
     $con  = conecta();

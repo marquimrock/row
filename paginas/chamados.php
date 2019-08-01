@@ -7,19 +7,17 @@ $usuario = $_SESSION['usuario'];
 $edicao = false;
 $id='';
 $status = '';
-$_SESSION['status'] = $status;
-
 
 // -------------------------------------------------------------------
 // PREENCHE OS CAMPOS CONFORME O CLIENTE SELECIONADO NO RELATORIO PARA EDIÇÃO 
 // -------------------------------------------------------------------
 
 if (!empty($_GET['id'])) {
-   
    $id = $_GET['id'];
    $result = buscaChamadosPorId($id);
    $edicao = true;
    while ($chamado = mysqli_fetch_assoc($result)) {
+        $cliente = $chamado['id_cliente'];
         $solicitante = $chamado['solicitante'];
         $ocorrencia = $chamado['ocorrencia'];
     }
@@ -33,23 +31,16 @@ if (!empty($_GET['id'])) {
 // -------------------------------------------------------------------
 $cnpj = isset($_GET['cnpj']) ? $_GET['cnpj'] : '';
 $razao_social = isset($_GET['razao_social']) ? $_GET['razao_social'] : '';
-$solicitante = isset($_GET['solicitante']) ? $_GET['solicitante'] : '';
-$nome_fantasia = isset($_GET['nome_fantasia']) ? $_GET['nome_fantasia'] : '';
-$cep = isset($_GET['cep']) ? tiraEspecias($_GET['cep']) : '';
-$logradouro = isset($_GET['logradouro']) ? $_GET['logradouro'] : '';
-$numero = isset($_GET['numero']) ? $_GET['numero'] : '';
-$bairro = isset($_GET['bairro']) ? $_GET['bairro'] : '';
-$id_cliente = isset($_GET['cliente']) ? $_GET['cliente'] : '';
-$id_uf = isset($_GET['uf']) ? $_GET['uf'] : '';
-$telefone = isset($_GET['telefone']) ? $_GET['telefone'] : '';
-$celular1 = isset($_GET['celular1']) ? $_GET['celular1'] : '';
-$celular2 = isset($_GET['celular2']) ? $_GET['celular2'] : '';
-$email = isset($_GET['email']) ? $_GET['email'] : '';
-$qnt_pdv = isset($_GET['qnt_pdv']) ? $_GET['qnt_pdv'] : '';
+//$solicitante = isset($_GET['solicitante']) ? $_GET['solicitante'] : '';
+//$nome_fantasia = isset($_GET['nome_fantasia']) ? $_GET['nome_fantasia'] : '';
+//$id_cliente = isset($_GET['cliente']) ? $_GET['cliente'] : '';
 ?>
 
 <div class="page-header">
     <h3></h3>
+    <?php 
+    //echo  $cliente;
+    ?>
 </div>
 <div class="row">
     <div class="col-md-9 col-md-offset-1">
@@ -57,7 +48,6 @@ $qnt_pdv = isset($_GET['qnt_pdv']) ? $_GET['qnt_pdv'] : '';
             <form id="frm_teste"class="form-horizontal" action="gravaChamado.php" method="POST" novalidate>
                 <fieldset>
                     <legend class="text-center"><?php echo!empty($id) ? 'Editar Chamado' : 'Adicionar Chamado'; ?></legend>
-                
                     <!-- PRIMEIRA LINHA -->
 
                     <div class="form-group" style="padding-left: 50px;">                 
@@ -87,10 +77,13 @@ $qnt_pdv = isset($_GET['qnt_pdv']) ? $_GET['qnt_pdv'] : '';
                         ?>
                         <div class="col-md-5" style="width: 520px;">
                             <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;">Razão Social:</label>
-                            <select class="form-control" id="cb_cliente" name="cb_cliente" onkeydown="autoTab(this, event);" style="width: 490px;">
+                            <select class="form-control" id="cb_cliente" name="cb_cliente" onkeydown="autoTab(this, event);" style="width: 490px;" 
+                             >
                                 <option value="0">Selecione...</option>
                                 <?php while ($cb_cliente = mysqli_fetch_assoc($res)): ?>
-                                    <option value="<?php echo $cb_cliente['id']; ?>" <?php echo ($cb_cliente['id'] == $id_cliente) ? "selected='selected'" : ''; ?>><?php echo $cb_cliente['razao_social']; ?></option>
+                                    <option value="<?php echo $cb_cliente['id']; ?>" 
+                                <?php echo ($cb_cliente['id'] == $cb_cliente) ? "selected='selected'" : ''; ?>>
+                                    <?php echo $cb_cliente['razao_social']; ?></option>
                                 <?php endwhile; ?>
                             </select>
                         </div>
@@ -111,7 +104,7 @@ $qnt_pdv = isset($_GET['qnt_pdv']) ? $_GET['qnt_pdv'] : '';
                             <div class="col-md-8" style="<?php echo empty($edicao) ? 'visibility: hidden': '' ;?>">   
                                 <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;">Solução:</label>
                                 <input id="solucao" name="solucao" type="text" class="form-control" required 
-                                         onkeyup="maiuscula(this)" onkeydown="autoTab(this, event);" style="width: 710px;" />
+                                         onkeyup="maiuscula(this)" onkeydown="autoTab(this, event);" style="width: 710px;" <?php echo empty($edicao) ? 'false': 'autofocus' ?> />
                                          <br />
                             </div>
 

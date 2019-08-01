@@ -11,10 +11,12 @@ require 'lib/funcs.php';
 // -------------------------------------------------------------------
 // INICIALIZAÇÃO DOS CAMPOS
 // -------------------------------------------------------------------
+
 $id_cliente = $_POST['cb_cliente'];
 $solicitante = $_POST['solicitante'];
 $ocorrencia = $_POST['ocorrencia'];
 $status = $_SESSION['status'];
+
 
 // -------------------------------------------------------------------
 // VALIDAÇÕES

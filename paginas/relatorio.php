@@ -50,12 +50,10 @@ $resultado = limiteCliPorPagina($inicio_pag, $clientes_por_pagina);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($cliente = mysqli_fetch_assoc($resultado)): ?>
+                    <?php while ($chamado = mysqli_fetch_assoc($resultado)): ?>
                         <tr>
                             <td><?php
-                                $cnpj = tiraEspecias($cliente['cnpj']);
-                                echo (strlen($cnpj) === 14 ? mask($cnpj, '##.###.###/####-##') : mask($cnpj, '########-####'));
-                                ?> 
+                                $id = tiraEspecias($cliente['id']);?> 
                             </td>
                             <td><?php echo $cliente['razao_social']; ?></td>
                             <td><?php
