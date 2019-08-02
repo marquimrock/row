@@ -13,24 +13,26 @@ $status = '';
 // -------------------------------------------------------------------
 
 if (!empty($_GET['id'])) {
+
    $id = $_GET['id'];
+   $edicao = true;
+   
    $result = buscaChamadosPorId($id);
    $edicao = true;
    while ($chamado = mysqli_fetch_assoc($result)) {
-        $cliente = $chamado['id_cliente'];
+        $data_abertura = $chamado['data_abertura'];
+        $hora_abertura = $chamado['hora_abertura'];
+        $id_cliente = $chamado['id_cliente'];
         $solicitante = $chamado['solicitante'];
         $ocorrencia = $chamado['ocorrencia'];
     }
-
+    $data_abertura = date('d/m/y', strtotime($data_abertura));
+    $hora_abertura = date('H:m' , strtotime($hora_abertura));
 }   
-    
-    
 
 // -------------------------------------------------------------------
 // MANTEM OS CAMPOS PREENCHIDOS DURANTE O RETORNO DE ERRO DE VALIDAÇÕES
 // -------------------------------------------------------------------
-$cnpj = isset($_GET['cnpj']) ? $_GET['cnpj'] : '';
-$razao_social = isset($_GET['razao_social']) ? $_GET['razao_social'] : '';
 //$solicitante = isset($_GET['solicitante']) ? $_GET['solicitante'] : '';
 //$nome_fantasia = isset($_GET['nome_fantasia']) ? $_GET['nome_fantasia'] : '';
 //$id_cliente = isset($_GET['cliente']) ? $_GET['cliente'] : '';
@@ -39,7 +41,9 @@ $razao_social = isset($_GET['razao_social']) ? $_GET['razao_social'] : '';
 <div class="page-header">
     <h3></h3>
     <?php 
-    //echo  $cliente;
+    $res = buscaTodosClientes();
+    while ($cb_cliente = mysqli_fetch_assoc($res)):
+    endwhile
     ?>
 </div>
 <div class="row">
@@ -53,7 +57,7 @@ $razao_social = isset($_GET['razao_social']) ? $_GET['razao_social'] : '';
                     <div class="form-group" style="padding-left: 50px;">                 
                         <div class="col-md-3" style="width: 140px;">
                             <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;">Data:</label>
-                              <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;"><?php echo date('d/m/y') . '<br />';?></label>
+                              <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;"><?php  echo date('d/m/y') . '<br />';?></label>
                         </div>  
                         <div class="col-md-3" style="width: 140px;">
                             <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;">Hora:</label>
@@ -81,21 +85,24 @@ $razao_social = isset($_GET['razao_social']) ? $_GET['razao_social'] : '';
                              >
                                 <option value="0">Selecione...</option>
                                 <?php while ($cb_cliente = mysqli_fetch_assoc($res)): ?>
-                                    <option value="<?php echo $cb_cliente['id']; ?>" 
-                                <?php echo ($cb_cliente['id'] == $cb_cliente) ? "selected='selected'" : ''; ?>>
+                                    <option 
+                                    value="<?php echo $cb_cliente['id']; ?>" 
+                                <?php echo !empty($edicao) ? 'selected': '' ?>>
                                     <?php echo $cb_cliente['razao_social']; ?></option>
                                 <?php endwhile; ?>
                             </select>
                         </div>
+
+                         
                             <div class="col-md-3" style="width: 220px;">   
                                 <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;">Solicitante:</label>
-                                <input id="solicitante" name="solicitante" type="text" class="form-control" maxlength="50" required 
+                                <input id="solicitante" name="solicitante" type="text" class="form-control" maxlength="20" required 
                                        value="<?php echo!empty($solicitante) ? $solicitante : ''; ?>" <?php echo empty($edicao) ? 'false': 'readonly' ?> 
                                        onkeyup="maiuscula(this)" onkeydown="autoTab(this, event);" style="width: 190px;">
                             </div> 
                             <div class="col-md-8">   
                                 <label class="control-label" style="font-size: 12px; padding-bottom: 2px; padding-left: 5px;">Ocorrência:</label>
-                                <input id="ocorrencia" name="ocorrencia" type="text" class="form-control" required 
+                                <input id="ocorrencia" name="ocorrencia" type="text" class="form-control" required maxlength="200"
                                         value="<?php echo!empty($ocorrencia) ? $ocorrencia : ''; ?>"
                                         <?php echo empty($edicao) ? 'false': 'readonly' ?>
                                          onkeyup="maiuscula(this)" onkeydown="autoTab(this, event);" style="width: 710px;">
@@ -142,3 +149,4 @@ $razao_social = isset($_GET['razao_social']) ? $_GET['razao_social'] : '';
         </div>
     </div>
 </div>
+*/
